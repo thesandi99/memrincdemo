@@ -8,14 +8,186 @@
       name="description"
       content="Discover the future of the dubbing industry with Memrinc, a revolutionary platform that's changing the game."
     />
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+
+      .formula {
+          font-size: 1.5em;
+          color: #2c3e50;
+          text-align: center;
+          margin: 20px 0;
+      }
+      .explanation {
+          font-size: 1.1em;
+          color: #34495e;
+          text-align: justify;
+      }
+      .highlight {
+          color: #e74c3c;
+          font-weight: bold;
+      }
+  </style>
   </head>
   <body>
-    <h1>Memrinc: The Future of Dubbing Industry</h1>
-    <p>
-      Memrinc is a dubbing machine learning project made by Sangram Paatil and
+<div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: center; height: 100vh;">
+  <div style="text-align: center;">
+    <h1 style="color: #00698f; font-family: 'monospace'; font-size: 48px; font-weight: bold;  margin-bottom: 20px;">Memrinc: The Future of Dubbing Industry</h1>
+    <p style="text-align: justify; color: #333; font-family: 'Lato', sans-serif; font-size: 20px; padding: 20px; line-height: 1.5; background-color: #f7f7f7; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+      Memrinc is a dubbing machine learning project made by Sangram Patil and
       developed by friend Pruthviraj Pawar. It's an advanced dubbing academic
       model that, although not perfectly trained, is significantly better than
       others.
     </p>
-  </body>
+    <br />
+    <h2 style="color: #212222;text-align: justify;  font-family: 'monospace'; font-size: 26px; font-weight: bold; margin-bottom: 20px; justify-content: start;"> Architecture</h2>
+<p style="text-align: justify; color: #333; font-family: 'Lato', sans-serif; font-size: 20px; padding: 20px; line-height: 1.5; background-color: #f7f7f7; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+  Memrinc's architecture is based on a machine learning model that utilizes a combination of natural language processing (NLP) and speech recognition techniques. The model is trained on a large dataset of audio and text files, allowing it to learn the patterns and relationships between spoken words and their corresponding text representations.
+</p>
+<img src="assets/images/demucs.png" style="width: 100%; height: 400px; object-fit: cover; margin-bottom: 20px;">
+<br />
+<div style="display: flex; gap: 20px; justify-content: space-between; align-items: center;">
+  <div style="flex: 1;">
+    <img src="assets/images/image.png" style="width: 100%; height: 400px; object-fit: cover;">
+  </div>
+  <div style="flex: 2; padding: 20px; line-height: 1.5; background-color: #f7f7f7; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); text-align: justify; word-wrap: break-word; min-width: 0; height: 400px; overflow-y: auto;">
+  <p style="color: #333; font-family: 'Lato', sans-serif; font-size: 20px;">
+    To get input audio, we use libraries like MoviePy or PyDub to extract audio from video files. We then use our model to extract the audio features and transcribe the spoken words into text.
+ <pre style="text-align: justify; "">
+    <code>
+      from moviepy.editor import *
+
+      # Load the video file
+      video = VideoFileClip("path_to_your_video_file.mp4")
+
+      # Extract the audio from the video
+      audio = video.audio
+
+      # Write the audio to a file
+      audio.write_audiofile("extracted_audio.mp3")
+    </code>
+  </pre>
+
+  </p>
+</div>
+</div>
+<br/>
+<p style="text-align: justify; color: #333; font-family: 'monospace';">
+  The speech waveform is a combination of harmonics, fundamental frequency, and formant filters:
+</p>
+<br />
+<img src="assets/images/s1.png" style="width: 60%; height: auto; object-fit: cover; margin-bottom: 20px;">
+<br />
+<h2 style="text-align: justify; color: #333; font-family: 'monospace'; font-size: 20px; padding: 20px; line-height: 1.5; background-color: #f7f7f7; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+  Speech Synthesis Formula
+</h2>
+  <p class="formula">
+      \( s(t) = \sum_{n=1}^{N} A_n \sin(2\pi n f_0 t) \cdot \prod_{i=1}^{M} \frac{1}{1 + \left(\frac{f - f_i}{\Delta f_i}\right)^2} \)
+  </p>
+  <div class="explanation">
+      The formula combines sinusoidal waves and resonant filters. The term \( A_n \sin(2\pi n f_0 t) \)
+      represents harmonics derived from the fundamental frequency \( f_0 \), where \( n \in \mathbb{Z}^+ \) 
+      scales periodic contributions. Resonant filters, modeled as \( \frac{1}{1 + \left(\frac{f - f_i}{\Delta f_i}\right)^2} \),
+      refine these harmonics by emphasizing formants \( f_i \), which are shaped by bandwidth \( \Delta f_i \). 
+      The summation ensures \( s(t) \) synthesizes tonal and resonant features, combining harmonic complexity and 
+      spectral energy.
+  </div>
+  <h2>Key Mathematical Components:</h2>
+  <ul style="text-align: justify;">
+      <li>\( 2\pi n f_0 \): Governs periodicity and harmonic structure.</li>
+      <li>\( \prod \): Ensures filter application across all formants \( i \).</li>
+      <li>\( \frac{1}{1+x^2} \): Represents Lorentzian decay, ensuring smooth resonance.</li>
+  </ul>
+<br>
+<img src="assets/images/2.png" style="width: 60%; height: 400px; object-fit: cover; margin-bottom: 20px;">
+<p style="text-align: justify; color: #333; font-family: 'Lato', sans-serif; font-size: 20px; padding: 20px; line-height: 1.5; background-color: #f7f7f7; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+  The dubbing process involves the following steps:
+  <ul style="list-style: none; padding: 0; margin: 0; text-align: justify;">
+    <li style="margin-bottom: 10px;">Audio Input: The user provides an audio file that needs to be dubbed.</li>
+    <li style="margin-bottom: 10px;">Speech Recognition: The audio file is passed through a speech recognition system, which transcribes the spoken words into text.</li>
+    <li style="margin-bottom: 10px;">Text Analysis: The transcribed text is then analyzed using NLP techniques to identify the language, tone, and context.</li>
+    <li style="margin-bottom: 10px;">Dubbing: The analyzed text is then used to generate a dubbed audio file, which is synchronized with the original audio.</li>
+  </ul>
+</p>
+<br/>
+<!-- demo started -->`
+<h2 style="color: #212222;text-align: justify;  font-family: 'monospace'; font-size: 26px; font-weight: bold; margin-bottom: 20px; justify-content: start;"> Demo of Memrinc</h2>
+<p style="text-align: justify; color: #333; font-family: 'Lato', sans-serif; font-size: 20px; padding: 20px; line-height: 1.5; background-color: #f7f7f7; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+  This is the Memrinc demo, showcasing the advanced dubbing capabilities of the SAND5467X model.
+</p>
+<h3 style="text-align: justify; ">Anime is hard to dub, it's a challenging task for any model or software, which is why we chose anime as our first place to start.</code>
+<br />
+
+<br />
+<div style="display: flex; justify-content: space-between; align-items: center;">
+  <div style="flex: 2;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/ztK_7KVnze0?si=V66gm_MnPMUM_N6I&amp;start=61" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    
+    <figure>
+      <figcaption>Orignal Dubbing JP:</figcaption>
+      <audio controls src="assets/jjk/2.wav"></audio>
+    </figure>
+    <figure>
+      <figcaption>Offical Dubing English:</figcaption>
+      <audio controls src="assets/jjk/2.mp3"></audio>
+
+    </figure>
+    <figure>
+        <figcaption>Memrinc Dubbing:</figcaption>
+        <audio controls src="assets/jjk/1.mp3"></audio>
+      </figure>
+  </div>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: center;">
+  <div style="flex: 2;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/bF678HgP4Ec?si=SuQbOL-UOmaA1hPO&amp;start=7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <figure>
+        <figcaption>Memrinc Dubbing First 13 Sec Small SAND5150X Model</figcaption>
+        <audio controls src="assets/audio/dubed1.mp3"></audio>
+      </figure>
+  </div>
+</div>
+<h2 style="color: #212222;text-align: justify;  font-family: 'monospace'; font-size: 26px; font-weight: bold; margin-bottom: 20px; justify-content: start;"> Main Actor </h2>
+<p style="text-align: justify; color: #333; font-family: 'Lato', sans-serif; font-size: 20px; padding: 20px; line-height: 1.5; background-color: #f7f7f7; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+  The main actor in the anime.
+</p>
+<figure>
+  <figcaption>Audio Preview:</figcaption>
+  <audio controls src="assets/audio/2.wav"></audio>
+</figure>
+<p style="text-align: justify; font-family: monospace;" > Audio Ganarations Accoding to Main Actor Audio</p>
+<br>
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; justify-content: space-between; align-items: center;">
+ 
+<figure style="gap: 20px; text-align: justify; display: grid;" >
+   <figcaption>Demo Preview:</figcaption>
+  <audio controls src="assets/audio/genmain/1.wav"></audio>
+  <audio controls src="assets/audio/genmain/2.wav"></audio>
+  <audio controls src="assets/audio/genmain/3.wav"></audio>
+  <audio controls src="assets/audio/genmain/4.wav"></audio>
+</figure>
+</div>
+ <p style="text-align: justify; color: #333; font-family: 'Lato', sans-serif; font-size: 20px; padding: 20px; line-height: 1.5; background-color: #f7f7f7; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+  Memrinc is real worth it, and its potential to revolutionize the entertainment industry is vast. For instance, Memrinc can be used to:
+ <h2 style="color: #212222;text-align: justify;  font-family: 'monospace'; font-size: 26px; font-weight: bold; margin-bottom: 20px; justify-content: start;"> Memrinc's Potential </h2>
+<p style="text-align: justify; color: #333; font-family: 'Lato', sans-serif; font-size: 20px; padding: 20px; line-height: 1.5; background-color: #f7f7f7; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+  Memrinc is real worth it, and its potential to revolutionize the entertainment industry is vast. For instance, Memrinc can be used to automate the dubbing process for movies and TV shows, reducing production costs and time. This can be achieved by utilizing Memrinc's advanced dubbing capabilities, which can accurately translate spoken words into different languages, allowing for a more efficient and cost-effective production process. Furthermore, Memrinc can also be used to enable real-time language translation for live events, such as concerts and conferences, providing a more immersive experience for attendees who may not be fluent in the language being spoken.
+</p>
+<p style="text-align: justify; color: #333; font-family: 'Lato', sans-serif; font-size: 20px; padding: 20px; line-height: 1.5; background-color: #f7f7f7; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+  In conclusion, Memrinc is a revolutionary technology that has the potential to transform the entertainment industry. By leveraging Memrinc's advanced dubbing capabilities, the entertainment industry can unlock new opportunities for creative expression, global reach, and audience engagement. Whether it's automating the dubbing process for movies and TV shows, enabling real-time language translation for live events, creating personalized audio content for video games, or enhancing accessibility for people with hearing impairments, Memrinc is the perfect solution for any entertainment industry professional looking to take their content to the next level.
+</p>
+<p style="text-align: justify; color: #333; font-family: 'Lato', sans-serif; font-size: 20px; padding: 20px; line-height: 1.5; background-color: #f7f7f7; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+  We are currently raising funding to further advance this model. If you're interested in learning more about our project or would like to discuss potential business opportunities, please don't hesitate to reach out to us through <a href="https://www.linkedin.com/in/sangrampatil5150/" target="_blank" style="margin-right: 10px;">LinkedIn</a> or <a href="mailto:sangrampatil5150@gmail.com" style="margin-left: 10px;">Email</a>.
+</p>
+<div style="display: flex; justify-content: start; align-items: center; background-color: #f7f7f7; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); padding: 20px;">
+  <a href="https://www.linkedin.com/in/sangrampatill/" target="_blank" style="margin-right: 10px;">LinkedIn</a> 
+  <a href="mailto:sangrampatil5150@gmail.com" style="margin-left: 10px;">Email</a>
+</div>
+</div>
+
+</body>
 </html>
